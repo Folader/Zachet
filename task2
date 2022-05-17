@@ -1,0 +1,74 @@
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+vector<pair<string, string>> ans;
+
+int main()
+{
+    int n, ln, ind1, ind2, lst;
+    bool f;
+    string s;
+	cin >> n;
+	getline(cin, s);
+	for (int i = 0;i < n;i++)
+    {
+        getline(cin, s);
+        ln = s.size();
+        f = true;
+        lst = 0;
+        while (f)
+        {
+        f = false;
+        ind1 = -1;
+        ind2 = -1;
+        for (int j = lst;j < ln - 1;j++)
+        {
+            if (s[j] == '<' and s[j + 1] == 'a')
+                ind1 = j;
+            if (s[j] == 'a' and s[j + 1] == '>')
+                ind2 = j;
+            if (ind1 != -1 && ind2 != -1)
+                break;
+        }
+        string link, name;
+        int j = ind1;
+        while (j < ln && ind1 != -1)
+        {
+            if (s[j] == 'h' && s[j + 1] == 'r' && s[j + 2] == 'e' && s[j + 3] == 'f' && s[j + 4] == '=')
+            {
+                f = true;
+                j += 6;
+            }
+            else
+            {
+                if (f)
+                    if (s[j] != '"')
+                        link += s[j];
+                    else
+                        break;
+                j++;
+            }
+        }
+        if (f)
+        {
+            for (int j = ind2 - 3;j >= 0;j--)
+            {
+                if (s[j] != '>')
+                    name += s[j];
+                else
+                    break;
+            }
+            string name1;
+            for (int j = name.size() - 1;j >= 0;j--)
+                name1 += name[j];
+            ans.push_back(make_pair(link, name1));
+            lst = ind2 + 1;
+        }}
+    }
+    for (auto i:ans)
+    {
+        cout << i.first << ',' << i.second << '\n';
+    }
+}
