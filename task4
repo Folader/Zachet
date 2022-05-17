@@ -1,0 +1,43 @@
+#include <iostream>
+#include <string>
+#include<algorithm>
+using namespace std;
+
+
+int v1, v2, v_ans, v_cur1, v_cur2 = 0, vper, f = 1;
+
+
+int main() {
+	cin » v1 » v2 » v_ans;
+
+	if (v2 > v1) {
+		swap(v1, v2);
+	}
+	v_cur1 = v1;
+	v_cur2 = 0;
+	while (!(v1 == v_cur1 && v_cur2 == 0) || f == 1) {
+		f--;
+		cout « v_cur1 « ' ' « v_cur2 « '\n';
+		if (v_cur1 == v_ans || v_cur2 == v_ans || v_cur2 + v_cur1 == v_ans) {
+			cout « "yes";
+			return 0;
+		}
+		if (v_cur1 != 0) {
+			vper = v_cur1;
+			v_cur1 -= min(v_cur1, v2 - v_cur2);
+			v_cur2 += vper - v_cur1;
+
+		}
+
+		if (v_cur2 == v2) {
+			cout « 2 « '\n';
+			v_cur2 = 0;
+		}
+		if (v_cur1 == 0) {
+			cout « 3 « '\n';
+			v_cur1 = v1;
+		}
+
+	}
+	cout « "no";
+	return 0;
