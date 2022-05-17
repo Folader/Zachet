@@ -1,0 +1,29 @@
+int rec_while(int a) {
+	if (10 == a) {
+		return a;
+	}
+  a++
+	rec_while(a);
+}
+
+int rec_do_while(int a) {
+  a++;
+	if (10 == a) {
+		return a;
+	}
+	rec_do_while(a);
+}
+
+int rec_for(int a, int n) {
+	if (n == a) {
+		return a;
+	}
+	rec_for(++a);
+}
+
+int main() {
+	rec_while(0);
+	rec_for(0, 10);
+  rec_do_while(0);
+}
+
