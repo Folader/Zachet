@@ -1,0 +1,42 @@
+#include <iostream>
+#include <string>
+#include<vector>
+#include<math.h>
+#include<algorithm>
+
+using namespace std;
+
+string cur, apd;
+int n, a, countt, ind_cur;
+
+vector <string> memory;
+
+int main() {
+
+    cur = "asfsaf";
+    memory.push_back(cur);
+    ind_cur = 0;
+    cin >> n;
+    for (int indxx = 0; indxx < n; indxx++) {
+        cin >> a;
+        if (a == 1) {
+            cin >> apd;
+            cur = cur + apd;
+            memory[++ind_cur] = cur;
+
+        } else if (a == 2) {
+            cin >> countt;
+            cur.resize(max(0, int(cur.size() - countt)));
+            memory[++ind_cur] = (cur);
+
+        } else if (a == 3) {
+            cin >> countt;
+            cout << cur[countt - 1] << '\n';
+            
+        } else {
+            cur = memory[--ind_cur];
+            ind_cur--;
+        }
+    }
+    return 0;
+}
